@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 csv2images
+  #dvImportSegments.fileupload
+    fieldset
+      legend Upload your CSV File
+      input#txtFileUpload(type='file', name='File Upload', accept='.csv')
+  table#output
+    tbody
