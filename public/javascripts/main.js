@@ -22,11 +22,23 @@ $(document).ready(function() {
             reader.readAsText(file);
             reader.onload = function(event) {
                 var csvData = event.target.result;
-                data = $.csv.toArrays(csvData);
+                // console.log(csvData)
+                // data = $.csv.toArrays(csvData);
+                // console.log(data)
+
+                var inputArray = csvData.split('\n');
+                console.log(inputArray);
+                data=[];
+                for (var i = 0; i < inputArray.length; i++) {
+                    data.push(inputArray[i].split(';'))
+                };
+                console.log(data);
                 if (data && data.length > 0) {
                   for (var i = 0; i < data.length; i++) {
                       var line = data[i]
-                      $('#output tbody').append('<tr><td>' + line[0] +'<td>' + line[1] + '<td><img src="' + line[2] + '" width="100px" >')
+                      if (data.length > 0) {
+                        $('#output tbody').append('<tr><td>' + line[0] +'<td>' + line[1] + '<td>' + line[2] + '<td><img src="' + line[3] + '" width="300px" >' + '<td><img src="' + line[4] + '" width="300px" >')
+                      };
                   };
                 } else {
                     alert('No data to import!');
